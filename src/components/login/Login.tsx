@@ -3,10 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { login } from "@/api/loginApi";
 import { setToken } from "@/services/tokenService";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,8 +17,7 @@ function Login() {
 
       setToken(auth.accessToken);
 
-      // TODO: redirect o gestione stato globale
-      alert("Login successful");
+      navigate("/");
     } catch (err) {
       console.error("Login failed", err);
     }
